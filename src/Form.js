@@ -1,7 +1,7 @@
 import React from "react";
 import Notification from "./Notification";
-// phoneService is a module with backend functionality (axios):
-import phoneService from "./services/entries";
+// entryService is a module with backend functionality (axios):
+import entryService from "./services/entries";
 
 const Form = ({
   newName,
@@ -19,34 +19,29 @@ const Form = ({
   const addEntry = (event) => {
     // First we prevent the default behavior of the form when submitted:
     event.preventDefault();
-    // Now let's check if the entry already exists in the "persons" state array:
-    const exists = persons.map((el) => el.name);
-    // We get an array of existing names. Let's adjust the function:
-    if (exists.includes(newName)) {
-      // The entry exists. Let's warn the user about that:
-      alert(`${newName} is already added to the phonebook.`);
-    } else {
-      // The entry doesn't exist. Let's create an object with the new entry:
-      const entryObject = {
-        name: newName,
-        number: newNumber,
-      };
-      // Let's post the new entry to the server:
-      phoneService.create(entryObject).then((returnedEntry) => {
-        // Let's reset the pieces of state for the input fields to their default values:
-        setNewName("");
-        setNewNumber("");
-        // Let's set a message for the notification:
-        setMessage(`Added ${newName}`);
-        // Let's set a timeout for the notification:
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
-        // Let's add the object to the "persons" state array:
-        setPersons(persons.concat(returnedEntry));
-      });
-    }
+    // Now let's create an object with the new entry:
+    const entryObject = {
+      name: newName,
+      number: newNumber,
+    };
+    // Let's post the new entry to the server:
+    entryService.create(entryObject).then((response) => {
+      // Let's reset the pieces of state for the input fields to their default values:
+      console.log("response is", response);
+      setNewName("");
+      setNewNumber("");
+      // Let's set a message for the notification:
+      setMessage(`Added ${newName}`);
+      // Let's set a timeout for the notification:
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
+      // Let's update the "persons" state array with the response from the fulfilled promise:
+      setPersons(persons.concat(response));
+    });
   };
+  console.log("persons is", persons);
+
   return (
     <form onSubmit={addEntry}>
       <Notification message={message} />

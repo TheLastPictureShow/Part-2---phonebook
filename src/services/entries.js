@@ -1,8 +1,9 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/persons";
+const baseUrl = "/api/persons";
 
 const getAll = () => {
   const request = axios.get(baseUrl);
+  console.log("Fetched entries are:", request);
   return request.then((response) => response.data);
 };
 
@@ -12,8 +13,10 @@ const create = (newObject) => {
 };
 
 const remove = (url) => {
-  axios.delete(url);
-  console.log("Entry deleted");
+  const request = axios.delete(url);
+  return request.then((response) => response.data);
 };
 
-export default { getAll, create, remove };
+const entryService = { getAll, create, remove };
+
+export default entryService;

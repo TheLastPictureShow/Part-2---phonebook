@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Form from "./Form";
 import Persons from "./Persons";
-// phoneService is a module with backend functionality (axios):
-import phoneService from "./services/entries";
+import Form from "./Form";
+// entryService is a module with backend functionality (axios):
+import entryService from "./services/entries";
 
 const App = () => {
   // Let's create our pieces of state:
@@ -12,9 +12,10 @@ const App = () => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    /* Let's get the initial phonebook entries from the server to set
+    /* Let's get the initial phonebook entries from the database to set
        the "persons" state: */
-    phoneService.getAll().then((initialEntries) => {
+    entryService.getAll().then((initialEntries) => {
+      console.log("Initial Entries are:", initialEntries);
       setPersons(initialEntries);
     });
   }, []);

@@ -1,14 +1,14 @@
 import Entry from "./Entry";
-import phoneService from "./services/entries";
+import entryService from "./services/entries";
 
 const Persons = ({ persons, setPersons }) => {
   // Let's make a function that will remove an entry from the state:
-  const removeEntry = (id, name) => {
+  const removeEntry = (name, id) => {
     window.confirm(`Delete ${name}?`);
-    const url = `http://localhost:3001/persons/${id}`;
-    phoneService.remove(url);
-    setPersons(persons.filter((entry) => entry.id !== id));
-    console.log(persons);
+    const url = `/api/persons/${id}`;
+    entryService.remove(url).then((response) => {
+      setPersons(persons.filter((entry) => entry.id !== id));
+    });
   };
 
   return persons.map((el, index) => (
@@ -16,7 +16,7 @@ const Persons = ({ persons, setPersons }) => {
       name={el.name}
       number={el.number}
       key={index}
-      removeEntry={() => removeEntry(el.id, el.name)}
+      removeEntry={() => removeEntry(el.name, el.id)}
     />
   ));
 };
