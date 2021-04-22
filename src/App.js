@@ -3,6 +3,7 @@ import Persons from "./Persons";
 import Form from "./Form";
 // entryService is a module with backend functionality (axios):
 import entryService from "./services/entries";
+import "./App.css";
 
 const App = () => {
   // Let's create our pieces of state:
@@ -31,7 +32,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app">
       <h2>Phonebook</h2>
       <Form
         newName={newName}
@@ -46,7 +47,9 @@ const App = () => {
         setMessage={setMessage}
       />
       <h2>Entries:</h2>
-      <Persons persons={persons} setPersons={setPersons} />
+      <div className="list">
+        <Persons persons={persons} setPersons={setPersons} />
+      </div>
     </div>
   );
 };

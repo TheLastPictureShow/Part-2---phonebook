@@ -4,7 +4,7 @@ import entryService from "./services/entries";
 const Persons = ({ persons, setPersons }) => {
   // Let's make a function that will remove an entry from the state:
   const removeEntry = (name, id) => {
-    window.confirm(`Delete ${name}?`);
+    // alert(`You are deleting ${name}`);
     const url = `/api/persons/${id}`;
     entryService.remove(url).then((response) => {
       setPersons(persons.filter((entry) => entry.id !== id));

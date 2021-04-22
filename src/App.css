@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /*  turns 1 rem into 10px (because 100% is 16px by default); */
+}
+
+.app {
+  min-height: 100vh;
+  font-family: Roboto;
+  font-size: 1.6rem;
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  display: grid;
+  padding: 2rem;
+}
+
+.green {
+  color: mediumseagreen;
+  background-color: lightcyan;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-style: solid;
+}
+
+.form {
+  padding: 1rem;
+  background-color: lightcyan;
+  width: 25%;
+  border-radius: 25px;
+  margin-bottom: 2rem;
+}
+
+.form:hover {
+  animation: blueish 4s linear;
+}
+
+.form > * {
+  margin: 1.5rem;
+}
+
+input {
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid transparent;
+  height: 3rem;
+  padding: 1rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem;
+}
+
+.list > * {
+  height: 300px;
+}
+
+.entry {
+  background-color: lightyellow;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.entry > div {
+  background-color: lightcyan;
+  padding: 1rem;
+  border-radius: 25px;
+}
+
+@keyframes blueish {
+  25% {
+    background-color: rgba(127, 255, 212, 0.9); /* Aquamarine */
+  }
+  50% {
+    background-color: rgba(255, 222, 173, 1); /* Navajo White */
+  }
+  75% {
+    background-color: rgba(0, 255, 127, 0.8); /* Spring Green */
+  }
+  100% {
+    background-color: rgba(0, 191, 255, 0.6); /* Deep Sky Blue */
+  }
+}
+
+.entry:hover {
+  animation: blueish 4s linear;
+}
+
+.btn {
+  border-radius: 50px;
+  width: 10rem;
+  height: 5rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  background-color: lightskyblue;
+  color: black;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: cornflowerblue;
+}
+
+.btn:active {
+  border: none;
+  transform: translateY(3px);
+}

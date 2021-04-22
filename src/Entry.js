@@ -1,9 +1,12 @@
 const Entry = ({ name, number, removeEntry }) => {
   return (
-    <div>
-      {name}, {number}
-      {""}
-      <button onClick={removeEntry}>Delete</button>
+    <div className="entry">
+      <div>Name: {name}</div>
+      <div>Number: {number}</div>
+
+      <button className="btn" onClick={removeEntry}>
+        Delete
+      </button>
     </div>
   );
 };

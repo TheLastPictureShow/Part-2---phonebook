@@ -43,17 +43,19 @@ const Form = ({
   console.log("persons is", persons);
 
   return (
-    <form onSubmit={addEntry}>
+    <form className="form" onSubmit={addEntry}>
       <Notification message={message} />
       <h2>Add a new:</h2>
       <div>
-        name: <input value={newName} onChange={handleNameChange} />
+        Name: <input value={newName} onChange={handleNameChange} />
       </div>
       <div>
-        number: <input value={newNumber} onChange={handleNumberChange} />
+        Number: <input value={newNumber} onChange={handleNumberChange} />
       </div>
       <div>
-        <button type="submit">Add</button>
+        <button className="btn" type="submit">
+          Add
+        </button>
       </div>
     </form>
   );
