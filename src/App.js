@@ -11,6 +11,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [message, setMessage] = useState(null);
+  const [sortButton, setSortButton] = useState(true);
 
   useEffect(() => {
     /* Let's get the initial phonebook entries from the database to set
@@ -31,24 +32,39 @@ const App = () => {
     setNewNumber(event.target.value);
   };
 
+  const sortAlpha = () => {
+    setSortButton(!sortButton);
+  };
+
   return (
     <div className="app">
-      <h2>Phonebook</h2>
-      <Form
-        newName={newName}
-        setNewName={setNewName}
-        newNumber={newNumber}
-        setNewNumber={setNewNumber}
-        persons={persons}
-        setPersons={setPersons}
-        handleNameChange={handleNameChange}
-        handleNumberChange={handleNumberChange}
-        message={message}
-        setMessage={setMessage}
-      />
-      <h2>Entries:</h2>
-      <div className="list">
-        <Persons persons={persons} setPersons={setPersons} />
+      <div className="upper">
+        <h2>Phonebook App</h2>
+        <div>
+          <Form
+            newName={newName}
+            setNewName={setNewName}
+            newNumber={newNumber}
+            setNewNumber={setNewNumber}
+            persons={persons}
+            setPersons={setPersons}
+            handleNameChange={handleNameChange}
+            handleNumberChange={handleNumberChange}
+            message={message}
+            setMessage={setMessage}
+          />
+        </div>
+        <button className="btn-alpha" onClick={sortAlpha}>
+          Sort Alphabetically
+        </button>
+      </div>
+
+      <div className="lower">
+        <Persons
+          persons={persons}
+          setPersons={setPersons}
+          sortButton={sortButton}
+        />
       </div>
     </div>
   );

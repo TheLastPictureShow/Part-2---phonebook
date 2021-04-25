@@ -20,6 +20,29 @@ const Form = ({
     // First we prevent the default behavior of the form when submitted:
     event.preventDefault();
     // Now let's create an object with the new entry:
+    if (!newName) {
+      setMessage("Name missing! Please input a name");
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+
+    if (!newNumber) {
+      setMessage("Number missing! Please input a number");
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+
+    const names = persons.map((el) => el.name);
+
+    if (names.includes(newName)) {
+      setMessage("Name already in phonebook");
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+
     const entryObject = {
       name: newName,
       number: newNumber,
@@ -35,7 +58,7 @@ const Form = ({
       // Let's set a timeout for the notification:
       setTimeout(() => {
         setMessage(null);
-      }, 5000);
+      }, 4000);
       // Let's update the "persons" state array with the response from the fulfilled promise:
       setPersons(persons.concat(response));
     });
@@ -46,11 +69,11 @@ const Form = ({
     <form className="form" onSubmit={addEntry}>
       <Notification message={message} />
       <h2>Add a new:</h2>
-      <div>
-        Name: <input value={newName} onChange={handleNameChange} />
+      <div className="input">
+        <p>Name:</p> <input value={newName} onChange={handleNameChange} />
       </div>
-      <div>
-        Number: <input value={newNumber} onChange={handleNumberChange} />
+      <div className="input">
+        <p>Number:</p> <input value={newNumber} onChange={handleNumberChange} />
       </div>
       <div>
         <button className="btn" type="submit">
